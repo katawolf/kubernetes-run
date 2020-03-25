@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2alpha4
+kind: Config
+metadata:
+  name: katalaunch
+build:
+  artifacts:
+  - image: jtutzo/katawolf/frontend
+    custom:
+      buildCommand: docker build -t $IMAGE https://github.com/katawolf/frontend.git#master
+  - image: jtutzo/katawolf/decisionservice
+    custom:
+      buildCommand: docker build -t $IMAGE https://github.com/katawolf/decisionservice.git#master
+  tagPolicy:
+    sha256: {}
+deploy:
+  kubectl:
+    manifests:
+    - manifests/*.yaml
