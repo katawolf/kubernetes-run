@@ -1,7 +1,7 @@
 apiVersion: skaffold/v2alpha4
 kind: Config
 metadata:
-  name: katalaunch
+  name: katawolf
 build:
   artifacts:
   - image: jtutzo/katawolf/frontend
@@ -15,4 +15,9 @@ build:
 deploy:
   kubectl:
     manifests:
-    - manifests/*.yaml
+      - https://raw.githubusercontent.com/katawolf/frontend/master/k8s/configMap.yaml
+      - https://raw.githubusercontent.com/katawolf/frontend/master/k8s/deployment.yaml
+      - https://raw.githubusercontent.com/katawolf/frontend/master/k8s/service.yaml
+      - https://raw.githubusercontent.com/katawolf/decisionservice/master/k8s/configMap.yaml
+      - https://raw.githubusercontent.com/katawolf/decisionservice/master/k8s/deployment.yaml
+      - https://raw.githubusercontent.com/katawolf/decisionservice/master/k8s/service.yaml
